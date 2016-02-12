@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "description": "Core definitions and helpers for React + Redux in TypeScript",
   "main": "src/main.ts",
-  "registry": "github",
   "scripts": {
     "test": "mocha"
   },
