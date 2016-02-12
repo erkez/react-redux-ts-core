@@ -1,0 +1,23 @@
+{
+  "name": "react-redux-ts-core",
+  "version": "0.1.0",
+  "description": "Core definitions and helpers for React + Redux in TypeScript",
+  "main": "src/main.ts",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.2.0",
+    "mocha": "^2.4.5",
+    "typescript": "^1.8.0",
+    "typings": "^0.6.8"
+  },
+  "dependencies": {
+    "bluebird": "^3.3.0",
+    "react": "^0.14.7",
+    "redux": "^3.3.1"
+  }
+}
