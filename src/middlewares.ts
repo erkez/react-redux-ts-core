@@ -4,9 +4,9 @@ import Promise = require('bluebird');
 import { IDispatch } from 'redux';
 import { AsyncAction } from './actions';
 
-type GenericAsyncAction = AsyncAction<any, any>;
+export type GenericAsyncAction = AsyncAction<any, any>;
 
-interface AsyncDispatch extends IDispatch {
+export interface AsyncDispatch extends IDispatch {
     (action: GenericAsyncAction): GenericAsyncAction;
 }
 

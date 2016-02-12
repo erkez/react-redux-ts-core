@@ -3,9 +3,12 @@
     "module": "commonjs",
     "target": "es5",
     "noImplicitAny": true,
-    "inlineSourceMap": true
+    "inlineSourceMap": true,
+    "declaration": true,
+    "outDir": "release"
   },
   "exclude": [
+    "test",
     "node_modules",
     "typings/main",
     "typings/main.d.ts"

@@ -1,5 +1,6 @@
 {
   "name": "react-redux-ts-core",
+  "main": "release/main.d.ts",
   "dependencies": {
     "bluebird": "github:typed-typings/npm-bluebird#524d5cc66654fe7c8dcbccf90faeaa70588853a0",
     "redux": "github:andrew-w-ross/typings-redux#e16683b6d921624478ff926c9b50151aa4a5d22d"
