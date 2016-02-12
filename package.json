@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Core definitions and helpers for React + Redux in TypeScript",
   "main": "src/main.ts",
+  "registry": "github",
   "scripts": {
     "test": "mocha"
   },
@@ -12,6 +13,8 @@
     "chai": "^3.5.0",
     "chai-as-promised": "^5.2.0",
     "mocha": "^2.4.5",
+    "sinon": "^1.17.3",
+    "sinon-chai": "^2.8.0",
     "typescript": "^1.8.0",
     "typings": "^0.6.8"
   },

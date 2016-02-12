@@ -1,10 +1,11 @@
 'use strict';
 
 import Promise = require('bluebird');
-import Redux = require('redux');
+import { IActionGeneric } from 'redux';
 
 export type ActionType = string;
-export type Action<T> = Redux.IActionGeneric<T>;
+export type Action<T> = IActionGeneric<T>;
+export type AsyncAction<T, U> = Action<AsyncActionPayload<T, U>>;
 
 export interface AsyncActionPayload<T, U> {
     data: T;
@@ -37,7 +38,7 @@ export function createAsyncAction<T, R>(
     return createAction<T, AsyncActionPayload<T, R>>(type, data => {
         return {
             data,
-            promise: mapper(data)
+            promise: Promise.resolve(mapper(data))
         }
     });
 }
