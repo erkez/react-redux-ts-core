@@ -38,6 +38,9 @@ export function asyncActionReducer<T, U, S>(
             case 'rejected':
                 return rejected(state, action.error);
             default:
+                if (type == null) {
+                    return state;
+                }
                 throw new Error(`Unexpected meta.status '${status}'`);
         }
     };

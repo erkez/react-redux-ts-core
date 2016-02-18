@@ -1,6 +1,6 @@
 {
   "name": "react-redux-ts-core",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Core definitions and helpers for React + Redux in TypeScript",
   "main": "release/main.js",
   "registry": "npm",
