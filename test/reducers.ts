@@ -46,6 +46,21 @@ describe('Reducers', () => {
         expect(this.reducers.pending).to.have.callCount(0);
     });
 
+    it('should not skip with type argument `null`', () => {
+        let defaultState = { value: 1 };
+        let state = { value: 2 };
+        let payload = { value: 3 };
+        let action = { type: 'other', payload, meta: { status: 'fulfilled' } };
+
+        let reducer = asyncActionReducer(null, defaultState, this.reducers);
+        let newState = reducer(state, action);
+
+        expect(newState).to.deep.equal(payload);
+        expect(this.reducers.fulfilled).to.have.callCount(1);
+        expect(this.reducers.rejected).to.have.callCount(0);
+        expect(this.reducers.pending).to.have.callCount(0);
+    });
+
     it('should call fulfilled reducer', () => {
         let defaultState = { value: 1 };
         let state = { value: 2 };

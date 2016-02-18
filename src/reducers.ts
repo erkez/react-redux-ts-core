@@ -25,7 +25,7 @@ export function asyncActionReducer<T, U, S>(
     let rejected: ActionReducer<Error, S> = reducers.rejected || identity;
 
     return (state: S = defaultState, action: Action<any>): S => {
-        if (action.type !== type) {
+        if (action.type !== type && type != null) {
             return state;
         }
 
