@@ -13,13 +13,13 @@ export interface AsyncActionPayload<T, U> {
 }
 
 export interface ActionCreator<T, U> {
-    (data: T): Action<U>;
+    (data?: T): Action<U>;
 }
 
 export type AsyncActionCreator<T, U> = ActionCreator<T, AsyncActionPayload<T, U>>;
 
 export interface Mapper<T, R> {
-    (data: T): R
+    (data?: T): R
 }
 
 export function createAction<T, R>(type: ActionType, mapper: Mapper<T, R>): ActionCreator<T, R> {
