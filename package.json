@@ -1,6 +1,6 @@
 {
   "name": "react-redux-ts-core",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Core definitions and helpers for React + Redux in TypeScript",
   "main": "release/main.js",
   "registry": "npm",
@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "bluebird": "^3.3.0",
+    "lodash": "^4.6.1",
     "react": "^0.14.7",
     "redux": "^3.3.1"
   }

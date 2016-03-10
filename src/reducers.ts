@@ -8,40 +8,43 @@ export interface ActionReducer<T, S> {
 }
 
 export interface PromiseReducers<T, U, S> {
+    pending?: ActionReducer<T, S>;
     fulfilled?: ActionReducer<U, S>;
     rejected?: ActionReducer<Error, S>;
-    pending?: ActionReducer<T, S>;
+}
+
+export interface ReducerConfiguration<S> {
+    [actionType: string]: (state: S, data: any) => S | PromiseReducers<any, any, S>;
 }
 
 const identity = (x: any) => x;
 
-export function asyncActionReducer<T, U, S>(
-    type: ActionType,
-    defaultState: S,
-    reducers: PromiseReducers<T, U, S>): IReducer<S> {
+export function createReducer<S>(initialState: S, configuration: ReducerConfiguration<S>): (state: S, action: Action<any>) => S {
+    return (state = initialState, action: Action<any>) => {
+        let reducer = configuration[action.type];
 
-    let pending: ActionReducer<T, S> = reducers.pending || identity;
-    let fulfilled: ActionReducer<U, S> = reducers.fulfilled || identity;
-    let rejected: ActionReducer<Error, S> = reducers.rejected || identity;
-
-    return (state: S = defaultState, action: Action<any>): S => {
-        if (action.type !== type && type != null) {
+        if (reducer == null) {
             return state;
-        }
+        } else if (typeof reducer === 'function') {
+            return reducer(state, action.payload);
+        } else if (typeof reducer === 'object') {
+            let status = action.meta && action.meta.status || null;
+            let pending: ActionReducer<any, S> = (reducer as PromiseReducers<any, any, S>).pending || identity;
+            let fulfilled: ActionReducer<any, S> = (reducer as PromiseReducers<any, any, S>).fulfilled || identity;
+            let rejected: ActionReducer<Error, S> = (reducer as PromiseReducers<any, any, S>).rejected || identity;
 
-        let status = action.meta && action.meta.status || null;
-        switch (status) {
-            case 'pending':
-                return pending(state, action.payload);
-            case 'fulfilled':
-                return fulfilled(state, action.payload);
-            case 'rejected':
-                return rejected(state, action.error);
-            default:
-                if (type == null) {
+            switch (status) {
+                case 'pending':
+                    return pending(state, action.payload);
+                case 'fulfilled':
+                    return fulfilled(state, action.payload);
+                case 'rejected':
+                    return rejected(state, action.error);
+                default:
                     return state;
-                }
-                throw new Error(`Unexpected meta.status '${status}'`);
+            }
+        } else {
+            throw new Error('Invalid `createReducer` configuration.');
         }
     };
 }

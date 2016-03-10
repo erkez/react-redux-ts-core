@@ -6,6 +6,7 @@
     "redux": "github:andrew-w-ross/typings-redux#e16683b6d921624478ff926c9b50151aa4a5d22d"
   },
   "ambientDependencies": {
+    "lodash": "registry:dt/lodash#3.10.0+20160308151359",
     "react": "github:DefinitelyTyped/DefinitelyTyped/react/react.d.ts#f407264835650f5f38d4bb2c515a79e7a835916b"
   },
   "ambientDevDependencies": {
