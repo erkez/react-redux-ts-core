@@ -27,14 +27,15 @@ export function promise<S>(): (next: AsyncDispatch) => AsyncDispatch {
             meta
         });
 
-        payload.promise
-            .then(payload => {
+        return payload.promise
+            .tap(payload => {
                 meta.status = 'fulfilled';
                 next({type, payload, meta});
             })
             .catch(error => {
                 meta.status = 'rejected';
                 next({type, error, meta});
+                throw error;
             });
     };
 }
